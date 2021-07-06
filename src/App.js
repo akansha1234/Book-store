@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Search from "./Components/Search";
+//import Search from "./Components/Search";
 import BooksGrid from "./Components/BooksGrid";
 import Header from "./Components/Header";
 import BookDescription from "./Components/BookDescription";
@@ -16,7 +16,7 @@ const App = () => {
   const [user, setUser] = useState(null);
   const authListener = () => {
     fire.auth().onAuthStateChanged((user) => {
-      console.log(user);
+      //console.log(user);
       if (user) {
         setUser(user);
       } else {
@@ -35,7 +35,7 @@ const App = () => {
       )
       .then((res) => {
         const books = res.data.items;
-        console.log(books);
+        //console.log(books);
         setBook(books);
         setId("");
       })
@@ -55,7 +55,7 @@ const App = () => {
             path="/"
             render={(props) => (
               <React.Fragment>
-                <Header query={query} setQuery={setQuery}/>
+                <Header query={query} setQuery={setQuery} />
                 {/* <Search query={query} setQuery={setQuery} /> */}
                 <BooksGrid book={book} setId={setId} />
               </React.Fragment>
