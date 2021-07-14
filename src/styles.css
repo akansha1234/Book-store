@@ -157,9 +157,16 @@
 .form-group {
   padding: 10px;
 }
+.login-form .divider {
+  text-align: center;
+  font-size: 18px;
+  margin: 0px;
+  padding: 0px;
+}
 .login-button {
   width: 100%;
   margin: 10px;
+  text-align: center;
 }
 .register {
   color: blue;

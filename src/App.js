@@ -46,7 +46,7 @@ const App = () => {
   return (
     <div className="app">
       {!user ? (
-        <Login />
+        <Login setUser={setUser} />
       ) : (
         // <div className="app">
         <Switch>

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import GoogleLogin from "react-google-login";
 import fire from "../Config/firebase";
 import Lottie from "react-lottie";
 import animationData from "../lotties/reading-in-login";
 import { Form, Button } from "react-bootstrap";
-const Login = () => {
+const Login = ({ setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hasAccount, setHasAccount] = useState(true);
@@ -14,6 +15,11 @@ const Login = () => {
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice"
     }
+  };
+  const responseGoogle = (response) => {
+    console.log(response);
+    console.log(response.profileObj);
+    setUser(response);
   };
 
   const Login = (e) => {
@@ -73,6 +79,15 @@ const Login = () => {
               <Button type="submit" onClick={Login} className="login-button">
                 Sign In
               </Button>
+              <p className="divider">or</p>
+              <GoogleLogin
+                clientId="720220762466-3nfp1vc5ahbm22tc6947nmuqang24oaq.apps.googleusercontent.com"
+                buttonText="Sign In With Google"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={"single_host_origin"}
+                className="login-button"
+              />
               <p>
                 Don't have an account?
                 <span
