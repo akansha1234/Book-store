@@ -14,6 +14,7 @@ const App = () => {
   const [query, setQuery] = useState("harry potter");
   const [id, setId] = useState(" ");
   const [user, setUser] = useState(null);
+  const [login, setLogin] = useState(true);
   const authListener = () => {
     fire.auth().onAuthStateChanged((user) => {
       //console.log(user);
@@ -46,7 +47,7 @@ const App = () => {
   return (
     <div className="app">
       {!user ? (
-        <Login setUser={setUser} />
+        <Login setUser={setUser} setLogin={setLogin} login={login} />
       ) : (
         // <div className="app">
         <Switch>
@@ -55,7 +56,12 @@ const App = () => {
             path="/"
             render={(props) => (
               <React.Fragment>
-                <Header query={query} setQuery={setQuery} />
+                <Header
+                  query={query}
+                  setQuery={setQuery}
+                  setLogin={setLogin}
+                  login={login}
+                />
                 {/* <Search query={query} setQuery={setQuery} /> */}
                 <BooksGrid book={book} setId={setId} />
               </React.Fragment>
@@ -66,7 +72,7 @@ const App = () => {
             path="/desc"
             render={(props) => (
               <React.Fragment>
-                <BookDescription id={id} user={user} />
+                <BookDescription id={id} user={user} token={token} />
               </React.Fragment>
             )}
           />

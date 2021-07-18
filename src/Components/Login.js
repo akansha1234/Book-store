@@ -4,7 +4,7 @@ import fire from "../Config/firebase";
 import Lottie from "react-lottie";
 import animationData from "../lotties/reading-in-login";
 import { Form, Button } from "react-bootstrap";
-const Login = ({ setUser }) => {
+const Login = ({ setUser, setLogin, login }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hasAccount, setHasAccount] = useState(true);
@@ -19,6 +19,7 @@ const Login = ({ setUser }) => {
   const responseGoogle = (response) => {
     console.log(response);
     console.log(response.profileObj);
+    setLogin(true);
     setUser(response);
   };
 
@@ -80,14 +81,14 @@ const Login = ({ setUser }) => {
                 Sign In
               </Button>
               <p className="divider">or</p>
-              <GoogleLogin
+             { login && <GoogleLogin
                 clientId="720220762466-3nfp1vc5ahbm22tc6947nmuqang24oaq.apps.googleusercontent.com"
                 buttonText="Sign In With Google"
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
                 cookiePolicy={"single_host_origin"}
                 className="login-button"
-              />
+              />}
               <p>
                 Don't have an account?
                 <span
